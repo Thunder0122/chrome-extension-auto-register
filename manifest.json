@@ -1,0 +1,56 @@
+{
+  "name": "Auto Booker",
+  "version": "1.0",
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": [
+    "windows",
+    "tabs",
+    "storage",
+    "unlimitedStorage",
+    "activeTab",
+    "scripting",
+    "http://*/",
+    "https://*/",
+    "chrome-extension://*",
+    "*"
+  ],
+  "host_permissions": [
+    "windows",
+    "tabs",
+    "scripting",
+    "activeTab",
+    "https://prenotami.esteri.it/*",
+    "chrome-extension://*",
+    "*"
+  ],
+  "action": {
+    "default_popup": "index.html",
+    "default_title": "Auto Login"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://prenotami.esteri.it/*"
+      ],
+      "js": [
+        "jquery.min.js",
+        "content-script.js"
+      ]
+    },
+    {
+      "matches": [
+        "https://prenotami.esteri.it/*"
+      ],
+      "run_at": "document_start",
+      "js": [        
+        "content-script1.js"
+      ]
+    }
+  ],
+  "externally_connectable": {
+    "matches": ["*://*.google.com/*"]
+}
+}
